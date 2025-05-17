@@ -4,7 +4,7 @@ services:
   web:
     build: .
     ports:
-      - "8000:8000" # Maps port 8000 of the host to port 8000 of the container
+      - "8001:8000" # Maps port 8000 of the host to port 8000 of the container
     environment:
       # Override or set environment variables here
       # Ensure these are correctly set for your environment
@@ -15,7 +15,7 @@ services:
       SENDER_EMAIL: "harxharish@gmail.com" # Replace with your actual sender email
       RECEIVER_EMAIL: "harish@elevasionx.com" # Replace with your actual receiver email
       KV_URL: "redis://redis:6379/0" # Connects to the 'redis' service defined below
-      APP_PORT: 8000 # Ensures the Python app inside the container uses this port
+      APP_PORT: 8001 # Ensures the Python app inside the container uses this port
       # PYTHONUNBUFFERED: 1 # Optional: For seeing print statements immediately in logs
     depends_on:
       - redis

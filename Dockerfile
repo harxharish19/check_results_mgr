@@ -15,7 +15,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY api/ ./api/
 
 # Make port 8000 available to the world outside this container (or your chosen APP_PORT)
-EXPOSE 8000
+EXPOSE 8001
 
 # Define environment variables (these can be overridden in docker-compose.yml)
 # Add placeholders for your actual credentials and settings
@@ -26,7 +26,7 @@ ENV SMTP_PASSWORD="HarisHBKAAAA1903@!"
 ENV SENDER_EMAIL="harxharish@gmail.com"
 ENV RECEIVER_EMAIL="harish@elevasionx.com"
 ENV KV_URL="redis://redis:6379"
-ENV APP_PORT=8000
+ENV APP_PORT=8001
 
 # Run check_results.py when the container launches
 CMD ["python", "api/check_results.py"]

@@ -13,15 +13,15 @@ SEARCH_TERM = "Pharm D"  # Case-insensitive search
 
 # Email Configuration (from environment variables)
 SMTP_SERVER = os.environ.get("SMTP_SERVER", "smtp.gmail.com")
-SMTP_PORT = int(os.environ.get("SMTP_PORT", 587))
-SMTP_USERNAME = os.environ.get("harxharish@gmail.com")
-SMTP_PASSWORD = os.environ.get("HarisHBKAAAA1903@!")
-SENDER_EMAIL = os.environ.get("harxharish@gmail.com")
-RECEIVER_EMAIL = os.environ.get("harish@elevasionx.com")
-EMAIL_SUBJECT_PREFIX = "[Result Vanthuruchuuu!!!!]"
+SMTP_PORT = int(os.environ.get("SMTP_PORT", 587)) # This is fine
+SMTP_USERNAME = os.environ.get("SMTP_USERNAME")    # CORRECTED
+SMTP_PASSWORD = os.environ.get("SMTP_PASSWORD")    # CORRECTED
+SENDER_EMAIL = os.environ.get("SENDER_EMAIL")      # CORRECTED
+RECEIVER_EMAIL = os.environ.get("RECEIVER_EMAIL")  # CORRECTED
+EMAIL_SUBJECT_PREFIX = "[Result Vanthuruchuuu!!!!]" # This is fine, it's a fixed string
 
 # Vercel KV (Redis) connection
-KV_URL = os.environ.get("KV_URL")
+KV_URL = os.environ.get("KV_URL") # This is fine
 KV_NOTIFIED_SET_KEY = "notified_exam_results_set_pharm_d"
 
 def get_kv_connection():
@@ -155,7 +155,7 @@ class handler(BaseHTTPRequestHandler):
     
 if __name__ == '__main__':
     from http.server import HTTPServer
-    port = int(os.environ.get("APP_PORT", 8000))
+    port = int(os.environ.get("APP_PORT", 8001))
     server_address = ('0.0.0.0', port)
     httpd = HTTPServer(server_address, handler)
     print(f"Starting HTTP server on port {port}...")
