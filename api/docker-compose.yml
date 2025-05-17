@@ -1,0 +1,33 @@
+version: "3.8"
+
+services:
+  web:
+    build: .
+    ports:
+      - "8000:8000" # Maps port 8000 of the host to port 8000 of the container
+    environment:
+      # Override or set environment variables here
+      # Ensure these are correctly set for your environment
+      SMTP_SERVER: "smtp.gmail.com"
+      SMTP_PORT: 587
+      SMTP_USERNAME: "harxharish@gmail.com" # Replace with your actual username
+      SMTP_PASSWORD: "HarisHBKAAAA1903@!" # Replace with your actual password
+      SENDER_EMAIL: "harxharish@gmail.com" # Replace with your actual sender email
+      RECEIVER_EMAIL: "harish@elevasionx.com" # Replace with your actual receiver email
+      KV_URL: "redis://redis:6379/0" # Connects to the 'redis' service defined below
+      APP_PORT: 8000 # Ensures the Python app inside the container uses this port
+      # PYTHONUNBUFFERED: 1 # Optional: For seeing print statements immediately in logs
+    depends_on:
+      - redis
+    volumes:
+      - ./api:/app/api # Optional: Mounts the local api directory into the container for live code changes during development
+
+  redis:
+    image: "redis:alpine"
+    ports:
+      - "6379:6379" # Exposes Redis on the host, useful for debugging but not strictly necessary for app-to-redis communication
+    volumes:
+      - redis_data:/data
+
+volumes:
+  redis_data: # Defines a named volume for Redis data persistence

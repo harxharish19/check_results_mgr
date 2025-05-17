@@ -14,11 +14,11 @@ SEARCH_TERM = "Pharm D"  # Case-insensitive search
 # Email Configuration (from environment variables)
 SMTP_SERVER = os.environ.get("SMTP_SERVER", "smtp.gmail.com")
 SMTP_PORT = int(os.environ.get("SMTP_PORT", 587))
-SMTP_USERNAME = os.environ.get("SMTP_USERNAME")
-SMTP_PASSWORD = os.environ.get("SMTP_PASSWORD")
-SENDER_EMAIL = os.environ.get("SENDER_EMAIL")
-RECEIVER_EMAIL = os.environ.get("RECEIVER_EMAIL")
-EMAIL_SUBJECT_PREFIX = "[Result Alert]"
+SMTP_USERNAME = os.environ.get("harxharish@gmail.com")
+SMTP_PASSWORD = os.environ.get("HarisHBKAAAA1903@!")
+SENDER_EMAIL = os.environ.get("harxharish@gmail.com")
+RECEIVER_EMAIL = os.environ.get("harish@elevasionx.com")
+EMAIL_SUBJECT_PREFIX = "[Result Vanthuruchuuu!!!!]"
 
 # Vercel KV (Redis) connection
 KV_URL = os.environ.get("KV_URL")
@@ -132,7 +132,8 @@ def perform_check_and_notify():
         log_messages.append("Could not find the results table (table with id='table').")
 
     if found_new_results_details:
-        email_body = f"New '{SEARCH_TERM}' results found on {WEBSITE_URL}:\n\n"
+        email_body = "Hey, your results are available on: @https://cms2results.tnmgrmuexam.ac.in/#/ExamResult\n\n"
+        email_body += f"New '{SEARCH_TERM}' results found on {WEBSITE_URL}:\n\n"
         email_body += "\n---\n".join(found_new_results_details)
         email_body += "\n\nFull Logs:\n" + "\n".join(log_messages)
         send_email_notification(f"{EMAIL_SUBJECT_PREFIX} New '{SEARCH_TERM}' Results Published!", email_body)
@@ -151,3 +152,11 @@ class handler(BaseHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(json.dumps(result).encode('utf-8'))
         return
+    
+if __name__ == '__main__':
+    from http.server import HTTPServer
+    port = int(os.environ.get("APP_PORT", 8000))
+    server_address = ('0.0.0.0', port)
+    httpd = HTTPServer(server_address, handler)
+    print(f"Starting HTTP server on port {port}...")
+    httpd.serve_forever()
