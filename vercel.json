@@ -1,0 +1,8 @@
+{
+    "crons": [
+      {
+        "path": "/api/check_results",
+        "schedule": "0 * * * *"
+      }
+    ]
+  }
